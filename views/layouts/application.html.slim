@@ -1,0 +1,59 @@
+doctype html
+html lang="en"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    title= content_for?(:title) ? "#{yield(:title)} | #{site_title}" : site_title
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "/themes/misoca/style", :media => "all"
+    = javascript_include_tag "application"
+
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /![if lt IE 9]
+      | <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /
+  body
+    header
+      nav.navbar
+        .container
+          = link_to root_path, { class: 'navbar-brand' }
+            = image_tag '/themes/misoca/images/logo.png', width: '20px'
+            = site_title
+
+          .hidden-xs
+            = search_form_for @search, url: words_index_path, method: :get, html: { class: 'navbar-form navbar-left' } do |f|
+              .form-group
+                = f.text_field :title_or_body_cont, class: 'form-control', placeholder: 'Search'
+
+          ul.nav.navbar-nav.navbar-right
+            li = link_to 'Misocaとは', '/Misoca', { class: 'navbar-link' }
+            - if user_signed_in?
+              li = link_to '記事を書く', new_word_path, { class: 'navbar-link' }
+            - else
+              li = link_to 'ログイン', new_user_session_path, { class: 'navbar-link' }
+    main
+      .container
+        - if notice
+          p#notice.alert.alert-info = notice
+        = yield
+
+    footer.page-footer
+      .container
+        h5 Menu
+        ul
+          li = link_to 'All words', words_index_path, { class: 'grey-text text-lighten-3'}
+          - if user_signed_in?
+            li = link_to 'Edit Profile', edit_user_registration_path, { class: 'grey-text text-lighten-3'}
+            li = link_to 'Members', site_members_path, { class: 'grey-text text-lighten-3'}
+            - if current_user.try('admin?')
+              li = link_to 'Site Settings', site_settings_path, { class: 'grey-text text-lighten-3'}
+            li = link_to 'Sign out', destroy_user_session_path, { method: :delete, class: 'grey-text text-lighten-3'}
+      .footer-copyright
+        .container
+        = link_to '', '', { class: 'grey-text text-lighten-3'}
+
