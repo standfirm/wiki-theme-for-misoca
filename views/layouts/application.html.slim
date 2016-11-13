@@ -8,6 +8,7 @@ html lang="en"
     title= content_for?(:title) ? "#{yield(:title)} | #{site_title}" : site_title
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
+    = include_gon
     = stylesheet_link_tag "/themes/misoca/style", :media => "all"
     = javascript_include_tag "application"
 
@@ -50,6 +51,7 @@ html lang="en"
           - if user_signed_in?
             li = link_to 'Edit Profile', edit_user_registration_path, { class: 'grey-text text-lighten-3'}
             li = link_to 'Members', site_members_path, { class: 'grey-text text-lighten-3'}
+            li = link_to 'Activities', site_activities_path, { class: 'grey-text text-lighten-3'}
             - if current_user.try('admin?')
               li = link_to 'Site Settings', site_settings_path, { class: 'grey-text text-lighten-3'}
             li = link_to 'Sign out', destroy_user_session_path, { method: :delete, class: 'grey-text text-lighten-3'}
