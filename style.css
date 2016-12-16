@@ -10,9 +10,5 @@ nav.navbar {
 
 .navbar-brand {
   line-height: 20px;
-  font-weight: bold;
   color: #333;
-}
-
-a.navbar-brand{
 }
