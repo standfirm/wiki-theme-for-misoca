@@ -52,13 +52,41 @@ html lang="en"
 
     footer.page-footer
       .container
-        h5 Menu
-        ul
-          li = link_to 'All words', words_index_path, { class: 'grey-text text-lighten-3'}
-          - if user_signed_in?
-            li = link_to 'Settings', site_settings_path, { class: 'grey-text text-lighten-3'}
-            li = link_to 'Sign out', destroy_user_session_path, { method: :delete, class: 'grey-text text-lighten-3'}
+        .row
+          .col-md-4.col-xs12
+            h5 メニュー
+            ul
+              li = link_to 'すべての記事', words_index_path, { class: 'grey-text text-lighten-3'}
+              - if user_signed_in?
+                li = link_to '設定', site_settings_path, { class: 'grey-text text-lighten-3'}
+                li = link_to 'ログアウト', destroy_user_session_path, { method: :delete, class: 'grey-text text-lighten-3'}
+          .col-md-4.col-xs12
+            h5 関連メディア
+            ul
+              li
+                a href="https://www.misoca.jp/press/"  Misocaプレスルーム
+              li
+                a href="https://www.misoca.jp/blog/"  Misocaブログ
+              li
+                a href="http://tech.misoca.jp/"  Misoca開発ブログ
+              li
+                a href="https://www.misoca.jp/toyoshi/"  toyoshiの日記
+              li
+                a href="https://www.misoca.jp/study/"  経理の教科書
+              li
+                a href="https://www.misoca.jp/mlist/"  ミツモリスト
+              li
+                a href="https://www.misoca.jp/freelance/"  フリーランスブック
+          .col-md-4.col-xs12
+            h5 このサイトについて
+            ul
+              li
+                a href="/大Misoca百科:利用規約"  利用規約
+              li
+                a href="https://www.misoca.jp/contact/"  運営組織
+              li
+                a href="https://recruit.misoca.jp/"  採用情報
       .footer-copyright
         .container
-        = link_to '', '', { class: 'grey-text text-lighten-3'}
+          p Copyright &copy; 2016. Misoca Inc. All rights reserved.
 
