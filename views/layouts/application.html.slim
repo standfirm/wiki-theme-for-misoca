@@ -24,21 +24,29 @@ html lang="en"
     header
       nav.navbar
         .container
-          = link_to root_path, { class: 'navbar-brand' }
-            = image_tag '/themes/misoca/images/logo.png', width: '20px'
-            = site_title
+          .navbar-header
+            button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#top-nav" expanded="false"
+              span.sr-only hello
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
 
-          .hidden-xs
-            = search_form_for @search, url: words_index_path, method: :get, html: { class: 'navbar-form navbar-left' } do |f|
-              .form-group
-                = f.text_field :title_or_body_cont, class: 'form-control', placeholder: t('search')
+            = link_to root_path, { class: 'navbar-brand' }
+              = image_tag '/themes/misoca/images/logo.png', width: '20px'
+              = site_title
 
-          ul.nav.navbar-nav.navbar-right
-            li = link_to 'Misocaとは', '/Misoca', { class: 'navbar-link' }
-            - if user_signed_in?
-              li = link_to '記事を書く', new_word_path, { class: 'navbar-link' }
-            - else
-              li = link_to 'ログイン', new_user_session_path, { class: 'navbar-link' }
+          .collapse.navbar-collapse#top-nav
+            .nav.navbar-nav
+              = search_form_for @search, url: words_index_path, method: :get, html: { class: 'navbar-form navbar-left' } do |f|
+                .form-group
+                  = f.text_field :title_or_body_cont, class: 'form-control', placeholder: t('search')
+
+            ul.nav.navbar-nav.navbar-right
+              li = link_to 'Misocaとは', '/Misoca', { class: 'navbar-link' }
+              - if user_signed_in?
+                li = link_to '記事を書く', new_word_path, { class: 'navbar-link' }
+              - else
+                li = link_to 'ログイン', new_user_session_path, { class: 'navbar-link' }
     main
       .container
         - if notice
