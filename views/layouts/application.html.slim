@@ -66,7 +66,7 @@ html lang="en"
             ul
               li = link_to 'すべての記事', words_index_path, { class: 'grey-text text-lighten-3'}
               - if user_signed_in?
-                li = link_to '設定', site_settings_path, { class: 'grey-text text-lighten-3'}
+                li = link_to '設定', site_activities_path, { class: 'grey-text text-lighten-3'}
                 li = link_to 'ログアウト', destroy_user_session_path, { method: :delete, class: 'grey-text text-lighten-3'}
           .col-md-4.col-xs12
             h5 関連メディア
