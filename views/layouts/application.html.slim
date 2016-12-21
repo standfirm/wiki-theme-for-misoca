@@ -45,8 +45,6 @@ html lang="en"
               li = link_to 'Misocaとは', '/Misoca', { class: 'navbar-link' }
               - if user_signed_in?
                 li = link_to '記事を書く', new_word_path, { class: 'navbar-link' }
-              - else
-                li = link_to 'ログイン', new_user_session_path, { class: 'navbar-link' }
     main
       .container
         - if notice
